@@ -1,7 +1,9 @@
 package net.alunando.organizador
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide
 
@@ -31,5 +33,19 @@ class MainActivity : IntroActivity() {
                 .background(android.R.color.white)
                 .fragment(R.layout.intro_4)
                 .build())
+
+        addSlide( FragmentSlide.Builder()
+            .background(android.R.color.white)
+            .fragment(R.layout.intro_cadastro)
+            .canGoForward(false)
+            .build())
+    }
+
+    fun btEntrar(view: View) {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    fun btCadastrar(view: View) {
+        startActivity(Intent(this, CadastroActivity::class.java))
     }
 }
