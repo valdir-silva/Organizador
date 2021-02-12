@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "678051026354",
+    "project_id": "organizador-fa17b",
+    "storage_bucket": "organizador-fa17b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678051026354:android:99fd9253cd618f778140ab",
+        "android_client_info": {
+          "package_name": "net.alunando.organizador"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678051026354-kdj68obng1ddh29utneujtr9cmubibc7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.alunando.organizador",
+            "certificate_hash": "1d320a7272c5d025c15709bf7d71f764a289ebe0"
+          }
+        },
+        {
+          "client_id": "678051026354-3ng7off2osa5nh2fp817q8f0k7c9h12c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUnO_vYem8YLxQxubO11bvf_Abm3elz1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678051026354-3ng7off2osa5nh2fp817q8f0k7c9h12c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
