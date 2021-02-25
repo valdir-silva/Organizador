@@ -6,46 +6,72 @@ import android.os.Bundle
 import android.view.View
 import com.heinrichreimersoftware.materialintro.app.IntroActivity
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide
+import net.alunando.organizador.config.ConfiguracaFirebase
 
 class MainActivity : IntroActivity() {
+
+    val autenticacao = ConfiguracaFirebase.autenticacao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         isButtonBackVisible = false
         isButtonNextVisible = false
 
-        addSlide( FragmentSlide.Builder()
+        addSlide(
+            FragmentSlide.Builder()
                 .background(android.R.color.white)
                 .fragment(R.layout.intro_1)
-                .build())
+                .build()
+        )
 
-        addSlide( FragmentSlide.Builder()
+        addSlide(
+            FragmentSlide.Builder()
                 .background(android.R.color.white)
                 .fragment(R.layout.intro_2)
-                .build())
+                .build()
+        )
 
-        addSlide( FragmentSlide.Builder()
+        addSlide(
+            FragmentSlide.Builder()
                 .background(android.R.color.white)
                 .fragment(R.layout.intro_3)
-                .build())
+                .build()
+        )
 
-        addSlide( FragmentSlide.Builder()
+        addSlide(
+            FragmentSlide.Builder()
                 .background(android.R.color.white)
                 .fragment(R.layout.intro_4)
-                .build())
+                .build()
+        )
 
-        addSlide( FragmentSlide.Builder()
-            .background(android.R.color.white)
-            .fragment(R.layout.intro_cadastro)
-            .canGoForward(false)
-            .build())
+        addSlide(
+            FragmentSlide.Builder()
+                .background(android.R.color.white)
+                .fragment(R.layout.intro_cadastro)
+                .canGoForward(false)
+                .build()
+        )
     }
 
-    fun btEntrar(view: View) {
+    override fun onStart() {
+        super.onStart()
+        verificarUsuarioLogado()
+    }
+
+    private fun btEntrar(view: View) {
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
-    fun btCadastrar(view: View) {
+    private fun btCadastrar(view: View) {
         startActivity(Intent(this, CadastroActivity::class.java))
+    }
+
+    private fun verificarUsuarioLogado() {
+        if(autenticacao.currentUser != null){
+            val intent = Intent(this, Principalctivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -53,8 +53,8 @@ class CadastroActivity : AppCompatActivity() {
         usuario.email?.let { email ->
             usuario.senha?.let { senha ->
                 autenticacao.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
-                    if(task.isSuccessful){
-                        toast("Sucesso ao cadastrar usuário!")
+                    if (task.isSuccessful) {
+                        finish()
                     } else {
                         var excecao: String
                         try {
@@ -63,9 +63,9 @@ class CadastroActivity : AppCompatActivity() {
                             excecao = "Digite uma senha mais forte!"
                         } catch (e: FirebaseAuthInvalidCredentialsException) {
                             excecao = "Por favor, digite um email válido"
-                        } catch (e: FirebaseAuthUserCollisionException){
+                        } catch (e: FirebaseAuthUserCollisionException) {
                             excecao = "Esta conta já foi cadastrada"
-                        } catch (e: Exception){
+                        } catch (e: Exception) {
                             excecao = "Erro ao cadastrar usuário: " + e.message
                             e.printStackTrace()
                         }
@@ -76,7 +76,7 @@ class CadastroActivity : AppCompatActivity() {
         }
     }
 
-    inline fun Context.toast(message: String){
+    inline fun Context.toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
