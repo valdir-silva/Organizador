@@ -1,15 +1,19 @@
 package net.alunando.organizador
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import kotlinx.android.synthetic.main.activity_cadastro.*
+
 import net.alunando.organizador.config.ConfiguracaFirebase
 import net.alunando.organizador.model.Usuario
+import java.lang.Exception
+
 
 class CadastroActivity : AppCompatActivity() {
 
@@ -52,14 +56,27 @@ class CadastroActivity : AppCompatActivity() {
                     if(task.isSuccessful){
                         toast("Sucesso ao cadastrar usuário!")
                     } else {
-                        toast("Erro ao cadastrar usuário!")
+                        var excecao: String
+                        try {
+                            throw task.exception!!
+                        } catch (e: FirebaseAuthWeakPasswordException) {
+                            excecao = "Digite uma senha mais forte!"
+                        } catch (e: FirebaseAuthInvalidCredentialsException) {
+                            excecao = "Por favor, digite um email válido"
+                        } catch (e: FirebaseAuthUserCollisionException){
+                            excecao = "Esta conta já foi cadastrada"
+                        } catch (e: Exception){
+                            excecao = "Erro ao cadastrar usuário: " + e.message
+                            e.printStackTrace()
+                        }
+                        toast(excecao)
                     }
                 }
             }
         }
     }
 
-    inline fun Context.toast(message:String){
-        Toast.makeText(this, message , Toast.LENGTH_SHORT).show()
+    inline fun Context.toast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
