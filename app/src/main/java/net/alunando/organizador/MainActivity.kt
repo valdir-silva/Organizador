@@ -18,6 +18,8 @@ class MainActivity : IntroActivity() {
         isButtonBackVisible = false
         isButtonNextVisible = false
 
+        throw RuntimeException("Test Crash")
+
         addSlide(
             FragmentSlide.Builder()
                 .background(android.R.color.white)

@@ -7,26 +7,26 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import kotlinx.android.synthetic.main.activity_cadastro.*
-import kotlinx.android.synthetic.main.activity_login.*
 import net.alunando.organizador.config.ConfiguracaFirebase
+import net.alunando.organizador.databinding.ActivityCadastroBinding
+import net.alunando.organizador.databinding.ActivityLoginBinding
 import net.alunando.organizador.model.Usuario
 import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 
     val autenticacao = ConfiguracaFirebase.autenticacao
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
 
-        buttonAcessar.setOnClickListener(View.OnClickListener {
+        binding.buttonAcessar.setOnClickListener {
 
-            val email = editEmailLogin.text
-            val senha = editSenhaLogin.text
+            val email = binding.editEmailLogin.text
+            val senha = binding.editSenhaLogin.text
 
             if (!email.isEmpty()) {
                 if (!senha.isEmpty()) {
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 toast("Preencha o email!")
             }
-        })
+        }
     }
 
     private fun acessar(usuario: Usuario) {

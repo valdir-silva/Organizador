@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import kotlinx.android.synthetic.main.activity_cadastro.*
 
 import net.alunando.organizador.config.ConfiguracaFirebase
+import net.alunando.organizador.databinding.ActivityCadastroBinding
 import net.alunando.organizador.model.Usuario
 import java.lang.Exception
 
@@ -18,15 +18,17 @@ import java.lang.Exception
 class CadastroActivity : AppCompatActivity() {
 
     val autenticacao = ConfiguracaFirebase.autenticacao
+    private lateinit var binding: ActivityCadastroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
+        binding = ActivityCadastroBinding.inflate(layoutInflater)
 
-        buttonCadastrar.setOnClickListener(View.OnClickListener {
-            val nome = editNome.text
-            val email = editEmail.text
-            val senha = editSenha.text
+        binding.buttonCadastrar.setOnClickListener {
+            val nome = binding.editNome.text
+            val email = binding.editEmail.text
+            val senha = binding.editSenha.text
 
             if (!nome.isEmpty()) {
                 if (!email.isEmpty()) {
@@ -45,7 +47,7 @@ class CadastroActivity : AppCompatActivity() {
             } else {
                 toast("Preencha o nome!")
             }
-        })
+        }
 
     }
 

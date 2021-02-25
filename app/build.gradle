@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
-    id 'kotlin-android-extensions'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -11,12 +11,13 @@ android {
 
     defaultConfig {
         applicationId "net.alunando.organizador"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -31,6 +32,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -53,4 +57,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.2'
 
     implementation 'com.heinrichreimersoftware:material-intro:2.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation "androidx.multidex:multidex:2.0.1"
 }
