@@ -18,7 +18,7 @@ class MainActivity : IntroActivity() {
         isButtonBackVisible = false
         isButtonNextVisible = false
 
-        throw RuntimeException("Test Crash")
+//        throw RuntimeException("Test Crash")
 
         addSlide(
             FragmentSlide.Builder()
@@ -62,11 +62,11 @@ class MainActivity : IntroActivity() {
         verificarUsuarioLogado()
     }
 
-    private fun btEntrar(view: View) {
+    fun btEntrar(view: View) {
         startActivity(Intent(this, LoginActivity::class.java))
     }
 
-    private fun btCadastrar(view: View) {
+    fun btCadastrar(view: View) {
         startActivity(Intent(this, CadastroActivity::class.java))
     }
 

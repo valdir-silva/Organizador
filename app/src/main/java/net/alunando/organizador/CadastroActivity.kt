@@ -2,18 +2,16 @@ package net.alunando.organizador
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-
 import net.alunando.organizador.config.ConfiguracaFirebase
 import net.alunando.organizador.databinding.ActivityCadastroBinding
 import net.alunando.organizador.model.Usuario
-import java.lang.Exception
-
 
 class CadastroActivity : AppCompatActivity() {
 
@@ -25,14 +23,16 @@ class CadastroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cadastro)
         binding = ActivityCadastroBinding.inflate(layoutInflater)
 
-        binding.buttonCadastrar.setOnClickListener {
-            val nome = binding.editNome.text
-            val email = binding.editEmail.text
-            val senha = binding.editSenha.text
+        val teste = findViewById<Button>(R.id.buttonCadastrar)
 
-            if (!nome.isEmpty()) {
-                if (!email.isEmpty()) {
-                    if (!senha.isEmpty()) {
+        teste.setOnClickListener {
+            val nome = findViewById<EditText>(R.id.editNome).text
+            val email = findViewById<EditText>(R.id.editEmail).text
+            val senha = findViewById<EditText>(R.id.editSenha).text
+
+            if (nome.isNotEmpty()) {
+                if (email.isNotEmpty()) {
+                    if (senha.isNotEmpty()) {
                         val usuario = Usuario()
                         usuario.nome = nome.toString()
                         usuario.email = email.toString()

@@ -2,16 +2,15 @@ package net.alunando.organizador
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import net.alunando.organizador.config.ConfiguracaFirebase
-import net.alunando.organizador.databinding.ActivityCadastroBinding
 import net.alunando.organizador.databinding.ActivityLoginBinding
 import net.alunando.organizador.model.Usuario
-import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,10 +22,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
-        binding.buttonAcessar.setOnClickListener {
+        val teste = findViewById<Button>(R.id.buttonAcessar)
 
-            val email = binding.editEmailLogin.text
-            val senha = binding.editSenhaLogin.text
+        teste.setOnClickListener {
+
+            val email = findViewById<EditText>(R.id.editEmailLogin).text
+            val senha = findViewById<EditText>(R.id.editSenhaLogin).text
 
             if (!email.isEmpty()) {
                 if (!senha.isEmpty()) {
@@ -46,23 +47,24 @@ class LoginActivity : AppCompatActivity() {
     private fun acessar(usuario: Usuario) {
         usuario.email?.let { email ->
             usuario.senha?.let { senha ->
-                autenticacao.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
-                    if(task.isSuccessful){
-                        val intent = Intent(this, Principalctivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        var excecao: String
-                        try {
-                            throw task.exception!!
-                        } catch (e: FirebaseAuthInvalidCredentialsException) {
-                            excecao = "Email ou senha incorretos"
-                        } catch (e: Exception) {
-                            excecao = "Erro ao acessar: " + e.message
-                            e.printStackTrace()
+                autenticacao.signInWithEmailAndPassword(email, senha)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val intent = Intent(this, Principalctivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            var excecao: String
+                            try {
+                                throw task.exception!!
+                            } catch (e: FirebaseAuthInvalidCredentialsException) {
+                                excecao = "Email ou senha incorretos"
+                            } catch (e: Exception) {
+                                excecao = "Erro ao acessar: " + e.message
+                                e.printStackTrace()
+                            }
+                            toast(excecao)
                         }
-                        toast(excecao)
                     }
-                }
             }
         }
     }
