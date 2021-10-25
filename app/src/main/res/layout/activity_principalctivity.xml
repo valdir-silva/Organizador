@@ -40,7 +40,7 @@
             android:src="@drawable/ic_baseline_add_24"
             app:fab_colorNormal="@color/colorPrimaryDesepsa"
             fab:fab_size="mini"
-            fab:labe="Despesa" />
+            fab:fab_label="Despesa" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_receita"
@@ -50,8 +50,7 @@
             android:src="@drawable/ic_baseline_add_24"
             app:fab_colorNormal="@color/colorPrimaryReceita"
             fab:fab_size="mini"
-            fab:labe="Receita" />
-
+            fab:fab_label="Receita" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
