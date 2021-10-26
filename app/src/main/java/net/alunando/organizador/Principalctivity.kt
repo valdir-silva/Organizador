@@ -1,10 +1,9 @@
 package net.alunando.organizador
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.github.clans.fab.FloatingActionButton
 
 class Principalctivity : AppCompatActivity() {
 
@@ -17,13 +16,20 @@ class Principalctivity : AppCompatActivity() {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //        }
+
+        findViewById<FloatingActionButton>(R.id.menu_receita).setOnClickListener {
+            adicionarReceita()
+        }
+        findViewById<FloatingActionButton>(R.id.menu_despesa).setOnClickListener {
+            adicionarDespesa()
+        }
     }
 
-    private fun adicionarDespesa(view: View) {
-
+    private fun adicionarDespesa() {
+        startActivity(Intent(this, DespesasActivity::class.java))
     }
 
-    private fun adicionarReceita(view: View) {
-
+    private fun adicionarReceita() {
+        startActivity(Intent(this, ReceitasActivity::class.java))
     }
 }

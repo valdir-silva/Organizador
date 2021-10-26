@@ -36,21 +36,19 @@
             android:id="@+id/menu_despesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="adicionarDespesa"
             android:src="@drawable/ic_baseline_add_24"
             app:fab_colorNormal="@color/colorPrimaryDesepsa"
-            fab:fab_size="mini"
-            fab:fab_label="Despesa" />
+            fab:fab_label="Despesa"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_receita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="adicionarReceita"
             android:src="@drawable/ic_baseline_add_24"
             app:fab_colorNormal="@color/colorPrimaryReceita"
-            fab:fab_size="mini"
-            fab:fab_label="Receita" />
+            fab:fab_label="Receita"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
